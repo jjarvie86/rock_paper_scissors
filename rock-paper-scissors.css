@@ -1,0 +1,17 @@
+.playerOptions {
+  
+  
+  
+}
+
+.button {
+  float: center;
+  background-color: #33FFBD;
+  border: 1px;
+  border-color: #3375FF;
+  padding: 25px;
+  text-align: center;
+  display: inline;
+  
+  
+}

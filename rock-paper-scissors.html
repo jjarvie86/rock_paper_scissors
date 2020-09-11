@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  
+  <style>
+    .playerButton {
+  float: center;
+  background-color: #33FFBD;
+  border: 5px solid #3375FF ;
+  padding: 50px;
+  text-align: center;
+  display: inline;
+  border-radius: 25px;
+  font-size: 20px;
+   outline:none;
+    }
+    
+     .playerButton:hover {
+  background-color: white
+  }
+  
+  .centre {
+   text-align: center;
+   padding-top: 100px;
+    
+  }
+  
+  
+  .score {
+    
+    font-size: 20px;
+    font-family: monospace;
+    
+  }
+  
+
+  .instructions {
+    
+    font-size: 20px;
+    font-family: monospace;
+    display: inline;
+    text-align: center;
+    padding-top: 100px
+
+    
+  }
+  
+
+  </style>
+
+<head>
+  <title>Rock Paper Scissors</title>
+  
+  <div class="instructions">
+    <p>Welcome to Joe's Rock Paper Scissors Page!</p>
+    <br>
+     <br>
+    <p>Click on a button to make a selection and see if you beat the computer</p>
+  
+  
+  </div>
+
+</head>
+
+<body>
+
+<div class="centre">
+<div class="playerOptions">
+  <button type="button" id='Rock' class="playerButton">Rock</button>
+  <button type="button" id='Paper' class="playerButton">Paper</button>
+  <button type="button" id='Scissors' class="playerButton">Scissors</button>
+</div>
+ <br>
+  <br>
+  <br>
+  <br>
+
+<div class="score">
+  
+  <p>Player Selection:</p>
+  <br>
+  <p id="pSelect"></p>
+  <br>
+
+  
+  <p>Computer Selection:</p>
+  <br>
+  <p id="cSelect"></p>
+  
+  
+</div>
+  <br>
+
+<div class="score">
+  <p>Player Score:</p>
+  <br>
+  <p id="pS"></p>
+  <br>
+  <p>Computer Score:</p>
+  <br>
+  <p id="cS"></p>
+  
+  
+</div>
+
+
+
+</div>
+
+  <script>
+  
+  var playerScore = 0;
+  var computerScore = 0;
+  
+  function computerPlay() {
+    var randomNumber = Math.floor(Math.random()*3) + 1;
+    
+    if (randomNumber == 1) {
+      document.getElementById("cSelect").innerHTML = 'Rock';
+      return 'rock';
+    }
+    else if (randomNumber == 2) {
+      document.getElementById("cSelect").innerHTML = 'Paper';
+      return 'paper';
+    }
+    else {
+      document.getElementById("cSelect").innerHTML = 'Scissors';
+      return 'scissors';
+    }
+  }
+  
+  
+  function playRound(e) {
+    
+    var computerSelection = computerPlay();
+    var playerSelection = e.target.id;
+    document.getElementById("pSelect").innerHTML = e.target.id;
+    
+    
+    
+     if (computerSelection == playerSelection.toLowerCase()) {
+      alert('It\'s a draw!');
+      return
+    }
+    else if (computerSelection == 'rock' && playerSelection.toLowerCase() == 'paper') {
+       alert('You Win! Paper beats Rock');
+      ++playerScore;
+      return document.getElementById("pS").innerHTML = playerScore;
+
+    }
+    else if (computerSelection == 'rock' && playerSelection.toLowerCase() == 'scissors') {
+      alert('You Lose! Rock beats scissors');
+        ++computerScore;
+      return document.getElementById("cS").innerHTML = computerScore;
+  
+    }
+    else if (computerSelection == 'paper' && playerSelection.toLowerCase() == 'rock') {
+      alert('You Lose! Paper beats rock');
+      ++computerScore;
+      return document.getElementById("cS").innerHTML = computerScore;
+      
+    }
+     else if (computerSelection == 'paper' && playerSelection.toLowerCase() == 'scissors') {
+      alert('You Win! Scissors beat rock');
+      ++playerScore;
+      return document.getElementById("pS").innerHTML = playerScore;
+       
+     }
+     else if (computerSelection == 'scissors' && playerSelection.toLowerCase() == 'rock') {
+      alert('You Win! Rock beats scissors');
+      ++playerScore;
+      return document.getElementById("pS").innerHTML = playerScore;
+       
+     }
+       
+      else {
+      alert('You Lose! Scissors beat paper');
+      ++computerScore;
+      return document.getElementById("cS").innerHTML = computerScore;
+      
+     }
+    }
+    
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach( button => button.addEventListener('click', playRound));
+      
+
+    
+  </script>
+ 
+</body>
+
+</html>
